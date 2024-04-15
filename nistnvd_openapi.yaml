@@ -1,0 +1,84 @@
+openapi: 3.0.0
+info:
+  title: NVD CVE API
+  description: API for retrieving CVE details from the National Vulnerability Database.
+  version: "2.0"
+servers:
+  - url: https://services.nvd.nist.gov/rest/json/cves/2.0
+paths:
+  /:
+    get:
+      summary: Retrieve CVEs based on multiple filter criteria.
+      parameters:
+        - name: cpeName
+          in: query
+          description: Returns all CVEs associated with a specific CPE.
+          required: false
+          schema:
+            type: string
+        - name: cveId
+          in: query
+          description: Returns a specific CVE by its ID.
+          required: false
+          schema:
+            type: string
+        - name: cvssV2Metrics
+          in: query
+          description: Returns CVEs matching a specific CVSSv2 vector string.
+          required: false
+          schema:
+            type: string
+        - name: cvssV3Metrics
+          in: query
+          description: Returns CVEs matching a specific CVSSv3 vector string.
+          required: false
+          schema:
+            type: string
+        - name: hasCertAlerts
+          in: query
+          description: Returns CVEs that contain a US-CERT Technical Alert.
+          required: false
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: Successful response with CVE data.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CVEResponse'
+components:
+  schemas:
+    CVEResponse:
+      type: object
+      properties:
+        resultsPerPage:
+          type: integer
+        startIndex:
+          type: integer
+        totalResults:
+          type: integer
+        vulnerabilities:
+          type: array
+          items:
+            $ref: '#/components/schemas/CVEItem'
+    CVEItem:
+      type: object
+      required:
+        - id
+        - summary
+      properties:
+        id:
+          type: string
+          description: The CVE ID.
+        summary:
+          type: string
+          description: A summary of the CVE.
+        publishedDate:
+          type: string
+          format: date-time
+          description: The publication date of the CVE.
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: The last modification date of the CVE.
