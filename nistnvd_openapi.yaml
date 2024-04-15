@@ -21,16 +21,6 @@ paths:
           description: Returns a specific CVE by its ID.
           schema:
             type: string
-        - name: cvssV2Metrics
-          in: query
-          description: Returns CVEs matching a specific CVSSv2 vector string.
-          schema:
-            type: string
-        - name: cvssV3Metrics
-          in: query
-          description: Returns CVEs matching a specific CVSSv3 vector string.
-          schema:
-            type: string
         - name: cvssV2Severity
           in: query
           description: Returns CVEs matching CVSSv2 qualitative severity rating.
@@ -43,11 +33,6 @@ paths:
           schema:
             type: string
             enum: [LOW, MEDIUM, HIGH, CRITICAL]
-        - name: cweId
-          in: query
-          description: Returns only the CVE that include a weakness identified by the provided CWE-ID.
-          schema:
-            type: string
         - name: hasCertAlerts
           in: query
           description: Returns the CVEs that contain a Technical Alert from US-CERT.
@@ -61,11 +46,6 @@ paths:
         - name: hasKev
           in: query
           description: Returns the CVEs that appear in CISA's KEV Catalog.
-          schema:
-            type: boolean
-        - name: hasOval
-          in: query
-          description: Returns the CVEs that contain an OVAL record.
           schema:
             type: boolean
         - name: isVulnerable
@@ -83,32 +63,9 @@ paths:
           description: Filters results to include only CVEs with exact matching phrases in their description.
           schema:
             type: boolean
-        - name: lastModStartDate
-          in: query
-          description: Filter CVEs modified after this date.
-          schema:
-            type: string
-            format: date-time
         - name: lastModEndDate
           in: query
           description: Filter CVEs modified before this date.
-          schema:
-            type: string
-            format: date-time
-        - name: noRejected
-          in: query
-          description: Exclude CVEs with the REJECT or Rejected status.
-          schema:
-            type: boolean
-        - name: pubStartDate
-          in: query
-          description: Filter CVEs published after this date.
-          schema:
-            type: string
-            format: date-time
-        - name: pubEndDate
-          in: query
-          description: Filter CVEs published before this date.
           schema:
             type: string
             format: date-time
@@ -122,31 +79,6 @@ paths:
           description: Index of the first result to return.
           schema:
             type: integer
-        - name: sourceIdentifier
-          in: query
-          description: Returns CVEs with a specific source identifier.
-          schema:
-            type: string
-        - name: versionEnd
-          in: query
-          description: Filter CVEs associated with CPEs ending at this version.
-          schema:
-            type: string
-        - name: versionEndType
-          in: query
-          description: Specifies if the versionEnd is inclusive or exclusive.
-          schema:
-            type:string
-        - name: versionStart
-          in: query
-          description: Filter CVEs associated with CPEs starting from this version.
-          schema:
-            type: string
-        - name: versionStartType
-          in: query
-          description: Specifies if the versionStart is inclusive or exclusive.
-          schema:
-            type: string
         - name: virtualMatchString
           in: query
           description: Filters CVEs more broadly using a CPE match string.
