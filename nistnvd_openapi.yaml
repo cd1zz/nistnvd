@@ -11,48 +11,11 @@ paths:
     get:
       summary: Retrieve CVEs based on multiple filter criteria.
       parameters:
-        - name: cpeName
-          in: query
-          description: Returns all CVEs associated with a specific CPE.
-          schema:
-            type: string
         - name: cveId
           in: query
           description: Returns a specific CVE by its ID.
           schema:
             type: string
-        - name: cvssV2Severity
-          in: query
-          description: Returns CVEs matching CVSSv2 qualitative severity rating.
-          schema:
-            type: string
-            enum: [LOW, MEDIUM, HIGH]
-        - name: cvssV3Severity
-          in: query
-          description: Returns CVEs matching CVSSv3 qualitative severity rating.
-          schema:
-            type: string
-            enum: [LOW, MEDIUM, HIGH, CRITICAL]
-        - name: hasCertAlerts
-          in: query
-          description: Returns the CVEs that contain a Technical Alert from US-CERT.
-          schema:
-            type: boolean
-        - name: hasCertNotes
-          in: query
-          description: Returns the CVEs that contain a Vulnerability Note from CERT/CC.
-          schema:
-            type: boolean
-        - name: hasKev
-          in: query
-          description: Returns the CVEs that appear in CISA's KEV Catalog.
-          schema:
-            type: boolean
-        - name: isVulnerable
-          in: query
-          description: Returns only CVEs associated with a specific CPE that is considered vulnerable.
-          schema:
-            type: boolean
         - name: keywordSearch
           in: query
           description: Returns CVEs where a word or phrase is found in the current description.
@@ -63,12 +26,6 @@ paths:
           description: Filters results to include only CVEs with exact matching phrases in their description.
           schema:
             type: boolean
-        - name: lastModEndDate
-          in: query
-          description: Filter CVEs modified before this date.
-          schema:
-            type: string
-            format: date-time
         - name: resultsPerPage
           in: query
           description: Number of results per page.
