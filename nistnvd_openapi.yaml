@@ -9,7 +9,8 @@ servers:
 paths:
   /:
     get:
-      summary: Retrieve CVEs based on multiple filter criteria.
+      description: Retrieve CVEs from NIST NVD based on multiple filter criteria.
+      summary: Retrieve CVEs from NIST NVD based on multiple filter criteria.
       parameters:
         - name: cpeName
           in: query
